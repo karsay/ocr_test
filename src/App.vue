@@ -2,6 +2,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
   <input type="file" ref="preview" @change="uploadFile" />
   <button v-on:click="hoge">upload</button>
+  <button v-on:click="apiTest">API TEST</button>
 </template>
 
 <script>
@@ -86,6 +87,23 @@ export default {
     },
     uploadFile() {
       console.log(this.$refs.preview.files[0]);
+    },
+    apiTest() {
+      var config = {
+        url: "https://omoikane-api.azurewebsites.net/api/genblank?code=0AlWCKVQJindusl4ny_uCxjYDMMUyemq8aY-PIRNN-gwAzFuioGCmg==",
+        method: "post",
+        data: {
+          choiceWord: "長岡京",
+          notChoiceWord: "784年【　　　】に遷都",
+          userId: 1,
+          schoolYear: 5,
+          subject: "la108",
+          field: "lang",
+        },
+      };
+      axios.request(config).then(async function (response) {
+        console.log(response);
+      });
     },
   },
 };
